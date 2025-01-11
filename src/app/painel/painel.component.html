@@ -1,26 +1,34 @@
 <div class="container">
+
     <div class="jumbotron">
         <div class="row">
             <div class="col-sm-6">
                 <app-progress></app-progress>
             </div>
             <div class="col-sm-6">
-
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <app-attempts></app-attempts>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <h6>Traduza essa frase:</h6>
-            <div class="mb-3">
-                <p class="form-label">Hey you</p>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <div class="col">
+                <h6>{{instruction}}</h6>
+                <p class="form-label">{{roundPhrase.engPhrase}}</p>
+                <div class="form-group">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                        (input)="updateAnswer($event)"></textarea>
+                </div>
             </div>
         </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" class="btn btn-outline-primary">Enviar</button>
+
+        <div class="row">
+            <div class="col">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-outline-primary" (click)="compareAnswer()">Enviar</button>
+                </div>
+            </div>
         </div>
 
     </div>
-</div>
