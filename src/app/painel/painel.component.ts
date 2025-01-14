@@ -15,6 +15,7 @@ export class PainelComponent {
 
   public round: number = 0
   public roundPhrase: Phrase = this.phrases[0]
+  public progress: number = 0
 
   constructor() {
     this.roundPhrase = this.phrases[this.round]
@@ -29,9 +30,11 @@ export class PainelComponent {
     if (this.answer == this.roundPhrase.ptbrPhrase) {
 
       alert('Resposta correta!')
-
       this.round++
+      this.progress = this.progress + Math.round(100 / this.phrases.length)
+
       this.roundPhrase = this.phrases[this.round]
+      this.answer = ''
     } else {
       alert('Resposta incorreta!')
     }
