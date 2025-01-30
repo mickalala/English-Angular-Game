@@ -17,13 +17,14 @@ export class PainelComponent {
   public roundPhrase: Phrase = this.phrases[0]
   public progress: number = 0
 
+  public attempts: number = 3
+
   constructor() {
-    this.roundPhrase = this.phrases[this.round]
+    this.updateRound()
   }
 
   public updateAnswer(userAnswer: Event): void {
     this.answer = (<HTMLInputElement>userAnswer.target).value
-    console.log(this.answer)
   }
 
   public compareAnswer(): void {
@@ -33,10 +34,19 @@ export class PainelComponent {
       this.round++
       this.progress = this.progress + Math.round(100 / this.phrases.length)
 
-      this.roundPhrase = this.phrases[this.round]
-      this.answer = ''
+      this.updateRound()
     } else {
       alert('Resposta incorreta!')
+      this.attempts--
+      this.updateRound()
+      if (this.attempts == -1) {
+        alert('Acabaram as tentativas!')
+      }
     }
+  }
+
+  public updateRound(): void {
+    this.roundPhrase = this.phrases[this.round]
+    this.answer = ''
   }
 }
