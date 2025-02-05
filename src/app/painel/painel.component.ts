@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Phrase } from '../shared/phrase.model';
 import { PHRASES } from './phrases.mock';
 
@@ -8,7 +8,7 @@ import { PHRASES } from './phrases.mock';
   styleUrl: './painel.component.css'
 })
 export class PainelComponent {
-
+  @Output() public finishRounds = new EventEmitter()
   public phrases: Phrase[] = PHRASES
   public instruction: string = 'Traduza essa frase:'
   public answer: string | null = ''
@@ -33,7 +33,9 @@ export class PainelComponent {
       alert('Resposta correta!')
       this.round++
       this.progress = this.progress + Math.round(100 / this.phrases.length)
-
+      if (this.round === 4) {
+        this.finishRounds.emit("win")
+      }
       this.updateRound()
     } else {
       alert('Resposta incorreta!')
@@ -41,6 +43,7 @@ export class PainelComponent {
       this.updateRound()
       if (this.attempts == -1) {
         alert('Acabaram as tentativas!')
+        this.finishRounds.emit("lose")
       }
     }
   }

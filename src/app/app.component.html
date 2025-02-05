@@ -1,2 +1,14 @@
 <app-top></app-top>
-<app-painel></app-painel>
+<div *ngIf="!finished; else endGame">
+    <app-painel (finishRounds)="finishRounds($event)"></app-painel>
+</div>
+<ng-template #endGame>
+    <div *ngIf="finishedSatus=='lose' else winGame" class="container">
+        <h1>You loose :s</h1>
+    </div>
+</ng-template>
+<ng-template #winGame>
+    <div class="container">
+        <h1>You win!</h1>
+    </div>
+</ng-template>

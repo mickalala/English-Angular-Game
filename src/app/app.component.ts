@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'app01';
+  public finished: boolean = false
+  public finishedSatus: string | undefined = undefined
+  public finishRounds(event: string): void {
+    this.finished = true
+    this.finishedSatus = event
+  }
 }
