@@ -8,8 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public finished: boolean = false
   public finishedSatus: string | undefined = undefined
+
   public finishRounds(event: string): void {
     this.finished = true
     this.finishedSatus = event
+  }
+
+  public tryAgain(): void {
+    this.finished = false
+    this.finishedSatus = undefined
   }
 }

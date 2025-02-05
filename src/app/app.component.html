@@ -5,10 +5,12 @@
 <ng-template #endGame>
     <div *ngIf="finishedSatus=='lose' else winGame" class="container">
         <h1>You loose :s</h1>
+        <button type="button" class="btn btn-primary" (click)="tryAgain()">Try Again</button>
     </div>
 </ng-template>
 <ng-template #winGame>
     <div class="container">
         <h1>You win!</h1>
+        <button type="button" class="btn btn-primary" (click)="tryAgain()">Try Again</button>
     </div>
 </ng-template>
